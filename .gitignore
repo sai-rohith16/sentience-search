@@ -1,0 +1,6 @@
+venv/
+__pycache__/
+*.npy
+*.csv
+build/
+sentience_engine.egg-info/
