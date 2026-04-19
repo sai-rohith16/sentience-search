@@ -1,11 +1,13 @@
 import pandas as pd
+from pathlib import Path
 
-# Load the fresh file you just downloaded
-df = pd.read_csv('data/tmdb_5000_movies.csv')
+# Paths
+INPUT_PATH = Path("data/tmdb_5000_movies.csv")
+OUTPUT_PATH = Path("data/cleaned_movies.csv")
 
-# Select the 5 columns we need
-cleaned_df = df[['id', 'title', 'overview', 'vote_average', 'runtime']].dropna()
+# Logic
+df = pd.read_csv(INPUT_PATH)
+cleaned_df = df[['title', 'vote_average', 'runtime', 'overview']].dropna()
+cleaned_df.to_csv(OUTPUT_PATH, index=False)
 
-# Save it
-cleaned_df.to_csv('data/cleaned_movies.csv', index=False)
-print("✅ Success! Fresh cleaned_movies.csv created.")
+print(f"Success! Created {OUTPUT_PATH} with {len(cleaned_df)} movies.")
